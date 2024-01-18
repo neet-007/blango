@@ -4,6 +4,7 @@ from blog.forms import CommentForm
 from django.utils import timezone
 from blog.models import Post
 import logging
+from django.urls import reverse
 # Create your views here.
 logger = logging.getLogger(__name__)
 
@@ -43,4 +44,7 @@ def post_detail(request, slug):
     )
 
 def post_table(request):
-    return render(request, "blog/post-table.html")
+    def post_table(request):
+    return render(
+        request, "blog/post-table.html", {"post_list_url": reverse("post-list")}
+    )
